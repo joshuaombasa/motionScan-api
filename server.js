@@ -24,9 +24,6 @@ app.use('/api/scanners', scannersRouter)
 app.use('/api/users', usersRouter)
 app.use('/api/login', loginRouter)
 
-const user = { email: "joshuaombasa@gmail.com", password: 'yd3FLBxZkdDkFLv' }
-
-
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
