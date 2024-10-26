@@ -14,7 +14,7 @@ const unknownEndpointHandler = (request,response, next) => {
      next()
 }
 
-const errorHandler = (request,response, next) => {
+const errorHandler = (error,request,response, next) => {
     logger.error(error.message)
     next(error)
 }
