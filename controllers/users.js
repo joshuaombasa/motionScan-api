@@ -14,6 +14,10 @@ usersRouter.get('/', async (request, response, next) => {
 usersRouter.get('/:id', async (request, response, next) => {
     try {
         const user = await User.findById(request.params.id)
+
+        if (!user) {
+            response.status(404).end()
+        }
         response.json(user)
     } catch (error) {
         next(error)
@@ -34,13 +38,15 @@ usersRouter.post('/', async (request, response, next) => {
     }
 })
 
-// usersRouter.get('/', async (request,response,next) => {
-//     try {
-//         const users = await User.find({})
-//         response.json(users)
-//     } catch (error) {
-//         next(error)
-//     }
-// })
+usersRouter.delete('/:id', async (request, response, next) => {
+    try {
+      await User.findByIdAndDelete(request.params.id)
+      response.status(204).end() 
+    } catch (error) {
+      next(error)
+    }
+  })
+
+
 
 module.exports = usersRouter
