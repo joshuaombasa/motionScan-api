@@ -1,6 +1,6 @@
 const logger = require('./logger')
 
-const requestLogger = (request,response, next) => {
+const requestLogger = (request, response, next) => {
     logger.info('Method:', request.method)
     logger.info('Path:', request.path)
     logger.info('Body:', request.body)
@@ -9,14 +9,14 @@ const requestLogger = (request,response, next) => {
     next()
 }
 
-const unknownEndpointHandler = (request,response, next) => {
-     response.status(400).send({error: 'unknown endpoint'})
-     next()
+const unknownEndpointHandler = (request, response, next) => {
+    response.status(400).send({ error: 'unknown endpoint' })
+    next()
 }
 
-const errorHandler = (error,request,response, next) => {
+const errorHandler = (error, request, response, next) => {
     logger.error(error.message)
     next(error)
 }
 
-module.exports = {requestLogger, unknownEndpointHandler,errorHandler}
+module.exports = { requestLogger, unknownEndpointHandler, errorHandler }
